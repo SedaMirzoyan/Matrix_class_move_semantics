@@ -154,7 +154,11 @@ Matrix_class& Matrix_class::operator=(Matrix_class&& ob)  //move operator assign
 
     if (this != &ob)
     {
-        delete []m_p;
+        for (int i = 0; i < this->m_row; i++)
+        {
+            delete[] this->m_p[i];
+        }
+        delete[] this->m_p;
 
         this->m_row = ob.m_row;
         this->m_column = ob.m_column;
